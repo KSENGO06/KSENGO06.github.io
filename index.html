@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oksana Hryhoriv · iOS Engineer</title>
+<meta name="description" content="iOS engineer in Vienna building SwiftUI apps: LifeWord, an English vocabulary app, and Tablio, an iPad POS for restaurants.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Oksana Hryhoriv · iOS Engineer">
+<meta property="og:description" content="iOS engineer in Vienna building SwiftUI apps: LifeWord, an English vocabulary app, and Tablio, an iPad POS for restaurants.">
+<meta property="og:url" content="https://ksengo06.github.io/">
+<meta property="og:image" content="https://ksengo06.github.io/t-dashboard.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column, projects as alternating text + phone-frame rows, a code-styled skills block */
+:root {
+  --bg: #F6F7F9;
+  --surface: #FFFFFF;
+  --ink: #16202B;
+  --muted: #5B6875;
+  --line: #DCE1E7;
+  --accent: #2F5BD3;
+  --accent-soft: #E7EDFC;
+  --code-bg: #101722;
+  --code-fg: #D6DEEA;
+  --code-key: #8FB1FF;
+  --code-str: #9BD6B4;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E141C; --surface: #151D27; --ink: #E7ECF2; --muted: #9AA7B4;
+    --line: #26313E; --accent: #86A6FF; --accent-soft: #1C2840;
+    --code-bg: #0A0F16; --code-fg: #D6DEEA; --code-key: #8FB1FF; --code-str: #9BD6B4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E141C; --surface: #151D27; --ink: #E7ECF2; --muted: #9AA7B4;
+  --line: #26313E; --accent: #86A6FF; --accent-soft: #1C2840;
+  --code-bg: #0A0F16; --code-fg: #D6DEEA; --code-key: #8FB1FF; --code-str: #9BD6B4;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 64px; display: grid; gap: 72px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* Hero */
+.hero { display: grid; gap: 20px; }
+.hero h1 { font-size: clamp(38px, 7vw, 64px); }
+.hero h1 span { color: var(--accent); }
+.hero .lead { font-size: 19px; max-width: 62ch; color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.chip { font-family: var(--font-mono); font-size: 13px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; font-weight: 500; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+/* Sections */
+section { display: grid; gap: 28px; }
+.section-head { display: grid; gap: 8px; }
+.section-head h2 { font-size: clamp(28px, 4vw, 36px); }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: start; }
+.about-text { display: grid; gap: 16px; max-width: 62ch; }
+.facts-list { margin: 0; display: grid; gap: 18px; padding: 20px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.facts-list dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.facts-list dd { margin: 0; font-size: 15px; }
+@media (max-width: 720px) { .about { grid-template-columns: minmax(0, 1fr); } }
+
+/* Project rows */
+.project { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 36px; align-items: start; padding-block: 32px; border-top: 1px solid var(--line); }
+.project:nth-of-type(even) .shots { order: -1; }
+.project-body { display: grid; gap: 16px; min-width: 0; }
+.project-body h3 { font-size: 30px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.status { color: var(--accent); }
+.project-body ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.project-body li::marker { color: var(--accent); }
+.project-body h4 { margin: 8px 0 0; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.project-body > p { max-width: 64ch; }
+.steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font-family: var(--font-mono); font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--ink); }
+.note { font-size: 14px; color: var(--muted); border-left: 2px solid var(--line); padding-left: 12px; }
+.metric { display: flex; gap: 14px; align-items: baseline; }
+.metric strong { font-family: var(--font-display); font-size: 34px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+.metric span { color: var(--muted); font-size: 14px; max-width: 30ch; }
+
+/* Phone frames (placeholders until real screenshots are added) */
+.shots { display: grid; gap: 12px; justify-items: center; }
+.phone { width: 100%; max-width: 220px; aspect-ratio: 9 / 19.5; border-radius: 34px; border: 8px solid var(--ink); background: var(--surface); position: relative; display: grid; place-items: center; text-align: center; padding: 20px; }
+.phone::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 20px; border-radius: 12px; background: var(--ink); }
+.phone small { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.shots .caption { font-size: 13px; color: var(--muted); }
+.phone.has-img { padding: 0; overflow: hidden; background: var(--ink); }
+.phone.has-img::before { display: none; }
+.phone.has-img img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 26px; }
+.gallery { grid-column: 1 / -1; display: flex; gap: 20px; overflow-x: auto; padding-block: 4px 12px; scroll-snap-type: x mandatory; min-width: 0; }
+.gallery figure { margin: 0; flex: 0 0 168px; display: grid; gap: 10px; justify-items: center; scroll-snap-align: start; }
+.gallery .phone { max-width: 168px; border-width: 6px; border-radius: 28px; }
+.gallery .phone.has-img img { border-radius: 22px; }
+.gallery figcaption { font-size: 13px; color: var(--muted); text-align: center; }
+.project.wide { grid-template-columns: minmax(0, 1fr); }
+.tablet { width: 100%; border: 10px solid var(--ink); border-radius: 22px; overflow: hidden; background: var(--ink); }
+.tablet img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.tablet-hero { margin: 0; display: grid; gap: 10px; }
+.tablet-hero figcaption { font-size: 13px; color: var(--muted); }
+.gallery.tablets figure { flex: 0 0 300px; }
+.gallery.tablets .tablet { border-width: 7px; border-radius: 16px; }
+.gallery.tablets .tablet img { border-radius: 8px; }
+
+/* Skills as Swift */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.skill-group { display: grid; gap: 12px; align-content: start; padding: 20px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.skill-group h3 { font-size: 18px; }
+.skill-group ul, .learning ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-group li { font-size: 14px; padding: 5px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+.learning { display: grid; gap: 10px; }
+.learning li { font-size: 14px; padding: 5px 10px; border-radius: 999px; border: 1px dashed var(--line); color: var(--muted); }
+@media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .skills { grid-template-columns: minmax(0, 1fr); } }
+
+/* Background */
+.story { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 900px) { .story { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.step { display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); }
+.step:last-child { border-top-color: var(--accent); }
+.step .year { font-family: var(--font-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.step h3 { font-size: 20px; }
+.step p { color: var(--muted); font-size: 15px; }
+
+/* Contact */
+.contact { display: grid; gap: 16px; padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.contact h2 { font-size: 30px; }
+footer { font-size: 13px; color: var(--muted); }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.email { font-family: var(--font-mono); font-size: 16px; user-select: all; overflow-wrap: anywhere; }
+button.btn { font: inherit; font-weight: 500; cursor: pointer; }
+
+@media (max-width: 720px) {
+  .project { grid-template-columns: minmax(0, 1fr); }
+  .project:nth-of-type(even) .shots { order: 0; }
+  .shots { grid-template-columns: 1fr; }
+  .story { grid-template-columns: minmax(0, 1fr); }
+  .wrap { gap: 56px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="label">iOS Engineer · From Ukraine, based in Vienna, Austria</p>
+    <h1>Oksana Hryhoriv builds <span>iOS apps</span> from first screen to finished product.</h1>
+    <p class="lead">Self-taught SwiftUI developer with 2 years in iOS development. I spent 5 months as the sole iOS engineer on Tablio, a restaurant POS platform, and for the last 3 months I've been building LifeWord, my own vocabulary app with 50+ categories, its own audio pipeline and home screen widgets.</p>
+    <div class="facts">
+      <span class="chip">Eligible to work in the EU</span>
+      <span class="chip">Open to relocation worldwide</span>
+      <span class="chip">Open to remote</span>
+      <span class="chip">Swift · SwiftUI · Clean Architecture</span>
+    </div>
+    <div class="links">
+      <a class="btn primary" href="Oksana_Hryhoriv_iOS_CV.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+      <a class="btn" href="https://github.com/KSENGO06" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/oksana-hryhoriv-724514412" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="section-head">
+      <p class="label">About</p>
+      <h2>Why I build apps</h2>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <p>I trained in medicine, and it taught me attention to detail and a habit of always learning something new. The most important lesson was not to be afraid to change direction and to do what genuinely brings me joy. So I left medicine for software development.</p>
+        <p>Before moving into tech, I also ran my own food business in Ukraine, which gave me a practical understanding of how restaurants work and of the tools their staff rely on.</p>
+        <p>Tablio was my first commercial role. Working for a European company, I owned the entire iOS side of the product, from architecture to finished features. LifeWord is the project I'm proudest of: every idea, the design and all of the code are my own work, built from zero.</p>
+        <p>I share what I learn and build on LinkedIn: progress updates on LifeWord, practical tips, and conversations with other developers.</p>
+      </div>
+      <dl class="facts-list">
+        <div><dt>Languages</dt><dd>Ukrainian, native<br>Russian, fluent<br>English, B2<br>Italian, A2</dd></div>
+        <div><dt>Location</dt><dd>Vienna, Austria<br>Open to relocation worldwide or remote</dd></div>
+        <div><dt>Work authorisation</dt><dd>Eligible to work in the EU<br>Visa sponsorship required for the UK and US</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <p class="label">Selected work</p>
+      <h2>Projects</h2>
+    </div>
+
+    <article class="project">
+      <div class="project-body">
+        <div class="meta"><span>Personal product · 3 months</span><span class="status">In active development</span></div>
+        <h3>LifeWord</h3>
+        <p>An English vocabulary app for Ukrainian speakers that teaches words through real scenes instead of flat lists. Designed and built entirely by me, from the first idea to the design and the code.</p>
+
+        <h4>Why I built it</h4>
+        <p>I'm from Ukraine, and learning foreign languages is my hobby, so I know first-hand what makes a new language hard for a beginner. I couldn't find a really good app on the Ukrainian market for learning words and actually practising them, so I built one based on my own experience.</p>
+
+        <h4>How it works</h4>
+        <ol class="steps">
+          <li><strong>See it.</strong> Each topic is a realistic scene with labelled objects, so words stick through visual memory.</li>
+          <li><strong>Hear it.</strong> Tapping a label plays the pronunciation, adding auditory memory.</li>
+          <li><strong>Study it.</strong> Every word has its own card with transcription, audio and translation.</li>
+          <li><strong>Practise it.</strong> Three levels of exercises lock the words in: translation, matching, listening and sentence building.</li>
+        </ol>
+
+        <h4>What I built</h4>
+        <ul>
+          <li>50+ categories of words and phrasal verbs, each with images and audio</li>
+          <li>Progress tracking, daily goals and visit streaks</li>
+          <li>Switching pronunciation between an American and a British accent</li>
+          <li>Lives, hints and slow audio playback in exercises</li>
+          <li>Home screen widgets and reminder notifications</li>
+          <li>Profile, personal dictionary and LifeWord Plus subscription screens; sign-in with Firebase Auth</li>
+          <li>JSON-driven content model: adding a new category needs no code changes</li>
+          <li>A debug-only in-app tool for placing word labels on scene photos</li>
+        </ul>
+
+        <h4>Working with AI</h4>
+        <p>I created the visuals, exercise content and voice-over together with AI tools. Writing precise prompts turned work that would take days into hours. Every image and audio file was still reviewed by hand. To save even more time, I wrote Python scripts that run from the terminal and turn whole word lists into audio through the ElevenLabs API.</p>
+        <div class="metric"><strong>3 h → 3 min</strong><span>audio production per category after automating it with Python</span></div>
+        <div class="stack"><span>SwiftUI</span><span>Clean Architecture</span><span>MVVM</span><span>WidgetKit</span><span>Firebase Auth</span><span>Python</span><span>ElevenLabs API</span></div>
+        <div class="links"><a class="btn" href="https://github.com/KSENGO06/WordLife-" target="_blank" rel="noopener">View code on GitHub</a></div>
+      </div>
+      <div class="shots">
+        <div class="phone has-img"><img src="scene.jpg" alt="LifeWord scene: a farmers market photo with tappable word labels such as vitamins, dairy and legumes"></div>
+        <p class="caption">Tap objects in a real scene</p>
+      </div>
+      <div class="gallery" role="list" aria-label="LifeWord screens">
+        <figure role="listitem"><div class="phone has-img"><img src="home.jpg" alt="Home screen with daily goal, continue learning card and word of the day" loading="lazy"></div><figcaption>Home: daily goal and word of the day</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="categories.jpg" alt="Categories grid with topic and word counts" loading="lazy"></div><figcaption>Categories: words and phrasal verbs</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="card.jpg" alt="Word card for additives with transcription, audio button and Ukrainian translation" loading="lazy"></div><figcaption>Word card with audio</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="levels.jpg" alt="Diet and Nutrition lesson with warm-up and level 1 exercises" loading="lazy"></div><figcaption>Exercises by level</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="listening.jpg" alt="Listening exercise: build the sentence you hear, with slow playback" loading="lazy"></div><figcaption>Listening with slow playback</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="matching.jpg" alt="Matching exercise: pair English words with Ukrainian translations" loading="lazy"></div><figcaption>Match words and translations</figcaption></figure>
+        <figure role="listitem"><div class="phone has-img"><img src="plus.jpg" alt="LifeWord Plus subscription screen with monthly and yearly plans" loading="lazy"></div><figcaption>LifeWord Plus subscription</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="project wide">
+      <div class="project-body">
+        <div class="meta"><span>SvartDev OÜ, Estonia · Contract, remote</span><span>2026 · 5 months</span></div>
+        <h3>Tablio</h3>
+        <p>An iPad POS system for restaurants and cafés across Europe. My first commercial role: as the only iOS developer, I owned the whole iOS app and built it from scratch to a finished product.</p>
+
+        <h4>Team</h4>
+        <p>A small cross-functional team: me on iOS, an Android developer, a backend developer and a designer. Tasks came through Notion, and I implemented the app from the designer's Figma files.</p>
+        <p>I had run my own food business in Ukraine and used POS systems every day, so I often suggested better solutions for real restaurant workflows. The designer and I shaped many screens together: I explained what works best technically and for staff, and she turned it into the design.</p>
+
+        <h4>What I built</h4>
+        <ul>
+          <li>Staff sign-in with a password</li>
+          <li>Order flow from creation to payment and closing, with order history</li>
+          <li>Floor plan: arranging tables by zone, table statuses and per-guest orders</li>
+          <li>Payments in cash or by card, printed or electronic receipts, split bill</li>
+          <li>Menu management: products with variations, modifiers, ingredients and allergens</li>
+          <li>Staff management with roles, warehouse and stock, VAT settings</li>
+          <li>Role-based dashboards with separate widgets for owners, managers and waiters</li>
+        </ul>
+
+        <h4>Technical decisions</h4>
+        <p>The backend wasn't ready when I started, so I built the app mock-data-first on Clean Architecture. Every data source sits behind a protocol in a repository layer, so the real API can replace the mock data without changing the UI or business logic. This let the iOS app move forward in parallel with the backend instead of waiting for it.</p>
+
+        <h4>Hardest challenge</h4>
+        <p>The floor plan: adding and arranging tables, and carrying a table's order from the floor plan into the checkout on the main menu screen, so staff could keep adding items and close the bill without losing anything along the way.</p>
+        <div class="metric"><strong>30+ screens</strong><span>built for the iPad app as the sole iOS developer</span></div>
+        <div class="stack"><span>SwiftUI</span><span>iPad</span><span>Clean Architecture</span><span>MVVM</span><span>Repository pattern</span><span>Protocol-oriented design</span><span>Figma</span></div>
+        <p class="note">The source code is private under company policy. The video below walks through the app, and I'm happy to discuss the architecture in an interview.</p>
+        <div class="links"><a class="btn primary" href="https://www.linkedin.com/feed/update/urn:li:activity:7501329006613655552/" target="_blank" rel="noopener">Watch the Tablio demo video</a></div>
+      </div>
+      <figure class="tablet-hero">
+        <div class="tablet"><img src="t-dashboard.jpg" alt="Tablio waiter dashboard with total sales, orders, average check, tips, shift activity chart and top upsells"></div>
+        <figcaption>Role-based dashboard, waiter view</figcaption>
+      </figure>
+      <div class="gallery tablets" role="list" aria-label="Tablio screens">
+        <figure role="listitem"><div class="tablet"><img src="t-floor.jpg" alt="Floor plan with tables by status and a side panel listing each guest's order" loading="lazy"></div><figcaption>Floor plan and per-guest orders</figcaption></figure>
+        <figure role="listitem"><div class="tablet"><img src="t-payment.jpg" alt="Payment dialog with cash or terminal and printed or electronic receipt" loading="lazy"></div><figcaption>Payment: cash or terminal</figcaption></figure>
+        <figure role="listitem"><div class="tablet"><img src="t-receipt.jpg" alt="Order history with an expanded receipt showing items, taxes, employee and payment method" loading="lazy"></div><figcaption>Order history and receipt</figcaption></figure>
+        <figure role="listitem"><div class="tablet"><img src="t-product.jpg" alt="Add product form with price, tax, category, variations, modifiers, ingredients and allergens" loading="lazy"></div><figcaption>Product setup with allergens</figcaption></figure>
+        <figure role="listitem"><div class="tablet"><img src="t-employees.jpg" alt="Employees list with roles waiter, owner and manager" loading="lazy"></div><figcaption>Employees and roles</figcaption></figure>
+      </div>
+    </article>
+
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <p class="label">Toolbox</p>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills">
+      <div class="skill-group">
+        <h3>Language &amp; UI</h3>
+        <ul><li>Swift</li><li>SwiftUI</li><li>Adaptive layouts for iPhone and iPad</li><li>HTML &amp; CSS</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Architecture</h3>
+        <ul><li>MVVM</li><li>Clean Architecture</li><li>Repository pattern</li><li>Dependency injection</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Data &amp; backend</h3>
+        <ul><li>SwiftData</li><li>Firebase Auth &amp; Firestore</li><li>Codable &amp; JSON</li><li>UserDefaults</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Networking &amp; memory</h3>
+        <ul><li>REST APIs with URLSession</li><li>async/await</li><li>ARC and memory management</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Apple frameworks</h3>
+        <ul><li>WidgetKit</li><li>Local notifications</li><li>AVFoundation audio</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <ul><li>Xcode</li><li>Git &amp; GitHub</li><li>Figma</li><li>Python automation</li><li>ElevenLabs API</li></ul>
+      </div>
+    </div>
+    <div class="learning">
+      <p class="label">Learning now</p>
+      <ul><li>Swift Concurrency in depth</li><li>Unit testing with XCTest</li><li>Swift Charts</li><li>Live Activities</li><li>StoreKit</li><li>Keychain</li><li>Accessibility &amp; localization</li></ul>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="section-head">
+      <p class="label">Background</p>
+      <h2>From medicine to iOS</h2>
+    </div>
+    <div class="story">
+      <div class="step">
+        <span class="year">2016–2020</span>
+        <h3>Medicine</h3>
+        <p>Studied at Ivano-Frankivsk Basic Medical College. Learned precision and calm decisions under pressure.</p>
+      </div>
+      <div class="step">
+        <span class="year">First code</span>
+        <h3>HTML and CSS</h3>
+        <p>Started by building websites, which got me hooked on making things people use.</p>
+      </div>
+      <div class="step">
+        <span class="year">2 years</span>
+        <h3>Swift and SwiftUI</h3>
+        <p>Moved to iOS and taught myself from books and video courses. Today I write everything in SwiftUI.</p>
+      </div>
+      <div class="step">
+        <span class="year">2026</span>
+        <h3>Shipping products</h3>
+        <p>5 months as the sole iOS developer on Tablio, then 3 months building LifeWord as my own product.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="label">Contact</p>
+    <h2>Looking for an iOS role, on-site anywhere or remote.</h2>
+    <p>Email me or send a message on LinkedIn. My code lives on GitHub.</p>
+    <div class="email-row">
+      <span class="email" id="email">grigorivoksana@gmail.com</span>
+      <button class="btn" id="copy-email" type="button">Copy email</button>
+    </div>
+    <div class="links">
+      <a class="btn primary" href="Oksana_Hryhoriv_iOS_CV.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+      <a class="btn" href="https://www.linkedin.com/in/oksana-hryhoriv-724514412" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/KSENGO06" target="_blank" rel="noopener">github.com/KSENGO06</a>
+    </div>
+  </section>
+
+  <footer>Oksana Hryhoriv · Vienna, Austria</footer>
+</div>
+<script>
+  (function () {
+    var btn = document.getElementById('copy-email');
+    var email = document.getElementById('email');
+    function selectEmail() {
+      var range = document.createRange();
+      range.selectNodeContents(email);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    btn.addEventListener('click', function () {
+      var text = email.textContent.trim();
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 2000); };
+      try {
+        navigator.clipboard.writeText(text).then(done, function () { selectEmail(); btn.textContent = 'Press ⌘C to copy'; });
+      } catch (e) { selectEmail(); btn.textContent = 'Press ⌘C to copy'; }
+    });
+  })();
+</script>
+
+</body>
+</html>
